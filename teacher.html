@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SJPO 2022 · Teacher Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0b0d12;--surf:#11141c;--surf2:#181c27;--surf3:#1e2230;--border:#1f2535;--border2:#2a3048;--accent:#00e5a0;--accent2:#00b87d;--accentdim:#003d28;--red:#ff4f6d;--redbg:#1c0a10;--greenbg:#001a12;--yellow:#ffd166;--yellowbg:#1a1400;--text:#dde2ee;--muted:#5a6480;--muted2:#8895b0;--mono:'Space Mono',monospace;--sans:'DM Sans',sans-serif;}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);min-height:100vh;}
+#login-screen{position:fixed;inset:0;background:var(--bg);display:flex;align-items:center;justify-content:center;z-index:999;}
+.login-box{background:var(--surf);border:1px solid var(--border2);border-radius:16px;padding:48px 52px;width:420px;display:flex;flex-direction:column;gap:20px;}
+.login-title{font-family:var(--mono);font-size:18px;font-weight:700;color:var(--accent);letter-spacing:2px;}
+.login-sub{font-size:14px;color:var(--muted2);}
+.login-label{font-family:var(--mono);font-size:11px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);margin-bottom:6px;}
+.login-input{width:100%;background:var(--surf2);border:1px solid var(--border2);border-radius:8px;padding:14px 16px;font-size:16px;color:var(--text);font-family:var(--sans);outline:none;transition:border-color .2s;}
+.login-input:focus{border-color:var(--accent);}
+.login-btn{background:var(--accent);color:#000;border:none;border-radius:8px;padding:14px;font-size:16px;font-weight:600;cursor:pointer;}
+.login-btn:hover{background:var(--accent2);}
+.login-err{display:none;font-size:13px;color:var(--red);font-family:var(--mono);}
+#dashboard{display:none;padding:32px 40px 80px;}
+.dash-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px;flex-wrap:wrap;gap:12px;}
+.dash-title{font-family:var(--mono);font-size:20px;font-weight:700;color:var(--accent);letter-spacing:2px;}
+.refresh-btn{font-family:var(--mono);font-size:12px;color:var(--muted2);background:var(--surf);border:1px solid var(--border2);padding:8px 16px;border-radius:5px;cursor:pointer;}
+.refresh-btn:hover{color:var(--accent);border-color:var(--accent2);}
+.tabs{display:flex;gap:0;margin-bottom:32px;border-bottom:1px solid var(--border);}
+.tab{font-family:var(--mono);font-size:12px;color:var(--muted2);padding:10px 20px;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-1px;transition:all .15s;white-space:nowrap;}
+.tab:hover{color:var(--text);}
+.tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.panel{display:none;}.panel.active{display:block;}
+.stat-row{display:grid;grid-template-columns:repeat(5,1fr);gap:14px;margin-bottom:28px;}
+.stat-card{background:var(--surf);border:1px solid var(--border2);border-radius:10px;padding:20px 20px 16px;}
+.stat-val{font-family:var(--mono);font-size:28px;font-weight:700;color:var(--accent);line-height:1;margin-bottom:8px;}
+.stat-lbl{font-family:var(--mono);font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);}
+.section-title{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--text);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);}
+.table-wrap{background:var(--surf);border:1px solid var(--border2);border-radius:10px;overflow:hidden;margin-bottom:28px;overflow-x:auto;}
+table{width:100%;border-collapse:collapse;}
+th{font-family:var(--mono);font-size:10px;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:12px 16px;text-align:left;border-bottom:1px solid var(--border2);background:var(--surf2);white-space:nowrap;}
+td{padding:11px 16px;font-size:13px;border-bottom:1px solid var(--border);color:var(--text);}
+tr:last-child td{border-bottom:none;}
+tr:hover td{background:var(--surf2);}
+.hi{color:var(--accent);font-family:var(--mono);font-weight:700;}
+.mid{color:var(--yellow);font-family:var(--mono);font-weight:700;}
+.lo{color:var(--red);font-family:var(--mono);font-weight:700;}
+.bar-wrap{flex:1;height:16px;background:var(--surf2);border-radius:8px;overflow:hidden;min-width:60px;}
+.bar-fill{height:100%;border-radius:8px;transition:width .4s;}
+.q-row{display:flex;align-items:center;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);}
+.q-row:last-child{border-bottom:none;}
+.q-lbl{font-family:var(--mono);font-size:11px;color:var(--muted2);min-width:30px;}
+.q-chapter{font-size:11px;color:var(--muted);min-width:160px;}
+.q-pct{font-family:var(--mono);font-size:11px;min-width:34px;text-align:right;}
+.q-count{font-size:11px;color:var(--muted);min-width:60px;}
+.heatmap-wrap{overflow-x:auto;padding-bottom:8px;}
+.hm-table{border-collapse:collapse;font-family:var(--mono);font-size:10px;}
+.hm-table th{padding:3px 2px;text-align:center;color:var(--muted);font-size:9px;font-weight:400;border:none;background:transparent;}
+.hm-table td{width:20px;height:20px;text-align:center;font-size:9px;border:1px solid var(--bg);}
+.hm-table .sid-cell{text-align:left;padding:2px 8px 2px 0;white-space:nowrap;color:var(--muted2);font-size:11px;border:none;background:transparent;min-width:100px;}
+.cell-ok{background:#003d28;color:#00e5a0;}.cell-bad{background:#1c0a10;color:#ff4f6d;}.cell-none{background:var(--surf2);color:var(--border2);}
+.sg{background:var(--surf);border:1px solid var(--border2);border-radius:10px;margin-bottom:12px;overflow:hidden;}
+.sg-hd{display:flex;align-items:center;gap:14px;padding:14px 20px;cursor:pointer;}
+.sg-hd:hover{background:var(--surf2);}
+.sg-id{font-family:var(--mono);font-size:14px;font-weight:700;color:var(--accent);}
+.sg-cnt{font-size:12px;color:var(--muted);}
+.sg-best{font-family:var(--mono);font-size:13px;margin-left:auto;}
+.sg-chev{color:var(--muted);font-size:11px;transition:transform .2s;}
+.sg.open .sg-chev{transform:rotate(180deg);}
+.sg-body{display:none;border-top:1px solid var(--border);}.sg.open .sg-body{display:block;}
+.loading{font-family:var(--mono);font-size:13px;color:var(--muted2);padding:32px;text-align:center;}
+::-webkit-scrollbar{width:5px;height:5px;}::-webkit-scrollbar-track{background:var(--bg);}::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px;}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-box">
+    <div class="login-title">·SJPO·2022·TEACHER</div>
+    <div class="login-sub">Teacher access only.</div>
+    <div>
+      <div class="login-label">Password</div>
+      <input class="login-input" id="inp-pw" type="password" placeholder="Password">
+      <div class="login-err" id="login-err" style="margin-top:8px;">&#x2717; Wrong password.</div>
+    </div>
+    <button class="login-btn" onclick="doLogin()">Enter &rarr;</button>
+  </div>
+</div>
+
+<div id="dashboard">
+  <div class="dash-header">
+    <div class="dash-title">&middot;SJPO&middot;2022 &middot; Teacher Dashboard</div>
+    <button class="refresh-btn" onclick="loadData()">&#x21BB; Refresh</button>
+  </div>
+
+  <div class="tabs">
+    <div class="tab active" onclick="switchTab(0)">&#x1F4CA; Overview</div>
+    <div class="tab" onclick="switchTab(1)">&#x1F464; Students</div>
+    <div class="tab" onclick="switchTab(2)">&#x1F4DD; Questions</div>
+    <div class="tab" onclick="switchTab(3)">&#x1F7E9; Heatmap</div>
+    <div class="tab" onclick="switchTab(4)">&#x270F;&#xFE0F; Answer Key</div>
+  </div>
+
+  <div class="panel active" id="panel-0">
+    <div class="stat-row">
+      <div class="stat-card"><div class="stat-val" id="st-n">&ndash;</div><div class="stat-lbl">Students</div></div>
+      <div class="stat-card"><div class="stat-val" id="st-avg">&ndash;</div><div class="stat-lbl">Avg Score</div></div>
+      <div class="stat-card"><div class="stat-val" id="st-hi">&ndash;</div><div class="stat-lbl">Highest</div></div>
+      <div class="stat-card"><div class="stat-val" id="st-lo">&ndash;</div><div class="stat-lbl">Lowest</div></div>
+      <div class="stat-card"><div class="stat-val" id="st-att">&ndash;</div><div class="stat-lbl">Submissions</div></div>
+    </div>
+    <div class="section-title">Top 5 Hardest Questions</div>
+    <div class="table-wrap" style="padding:16px 20px;" id="hardest-div"><div class="loading">Loading&hellip;</div></div>
+    <div class="section-title">Student Summary</div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Student ID</th><th>Attempts</th><th>Best</th><th>Latest</th><th>Last Submitted</th></tr></thead>
+      <tbody id="ov-tbody"><tr><td colspan="5" class="loading">Loading&hellip;</td></tr></tbody></table>
+    </div>
+  </div>
+
+  <div class="panel" id="panel-1">
+    <div class="section-title">All Submissions &mdash; Grouped by Student ID</div>
+    <div id="sg-wrap"><div class="loading">Loading&hellip;</div></div>
+  </div>
+
+  <div class="panel" id="panel-2">
+    <div class="section-title">Correct Rate per Question &mdash; Sorted Hardest &rarr; Easiest</div>
+    <div class="table-wrap" style="padding:20px 24px;"><div id="q-wrap"><div class="loading">Loading&hellip;</div></div></div>
+  </div>
+
+  <div class="panel" id="panel-3">
+    <div class="section-title">Answer Heatmap &mdash; <span style="color:var(--accent);">&#x2713; correct</span> &nbsp; <span style="color:var(--red);">&#x2717; wrong</span> &nbsp; <span style="color:var(--muted);">&middot; not attempted</span></div>
+    <div class="heatmap-wrap"><div id="hm-wrap"><div class="loading">Loading&hellip;</div></div></div>
+  </div>
+
+  <div class="panel" id="panel-4">
+    <div class="section-title">Answer Key Editor &mdash; Click A/B/C/D/E to change, then Save</div>
+    <div style="margin-bottom:20px;display:flex;gap:12px;align-items:center;flex-wrap:wrap;">
+      <button onclick="saveAnswerKey()" id="save-ak-btn" style="background:var(--accent);color:#000;border:none;border-radius:8px;padding:12px 28px;font-size:15px;font-weight:700;cursor:pointer;font-family:var(--mono);box-shadow:0 4px 0 #007a50;" onmousedown="this.style.transform='translateY(4px)';this.style.boxShadow='none';" onmouseup="this.style.transform='';this.style.boxShadow='0 4px 0 #007a50';">&#x1F4BE; Save Answer Key</button>
+      <span id="ak-msg" style="font-size:13px;color:var(--muted2);font-family:var(--mono);"></span>
+    </div>
+    <div class="table-wrap">
+      <table><thead><tr><th>Q</th><th>Chapter</th><th>Topic</th><th style="text-align:center;">Current</th><th>Change Answer</th></tr></thead>
+      <tbody id="ak-tbody"></tbody></table>
+    </div>
+  </div>
+</div>
+
+<script>
+const SCRIPT_URL='https://script.google.com/macros/s/AKfycbxycD5NvLdVD1dg8J_BBpEsWbW2WmZB1xxsHb_icmbE9A7K_v1tm8z1cZRTB6hcuyBg0g/exec';
+const YEAR='2022';
+const PW=null;
+
+const CH={1:'Kinematics',2:'Kinematics',3:'Kinematics',6:'Kinematics',7:'Kinematics',10:'Kinematics',11:'Kinematics',12:'Kinematics',13:'Kinematics',4:'Energy & Momentum',5:'Energy & Momentum',8:'Energy & Momentum',14:'Energy & Momentum',15:'Energy & Momentum',16:'Energy & Momentum',17:'Energy & Momentum',18:'Energy & Momentum',19:'Energy & Momentum',20:'Energy & Momentum',21:'Energy & Momentum',9:'Oscillations',22:'Optics & Fluids',23:'Optics & Fluids',24:'Optics & Fluids',25:'Optics & Fluids',26:'Optics & Fluids',27:'Optics & Fluids',30:'Optics & Fluids',31:'Optics & Fluids',32:'Optics & Fluids',33:'Optics & Fluids',34:'Optics & Fluids',35:'Electricity',36:'Electricity',28:'Magnetism & EM',29:'Magnetism & EM',37:'Magnetism & EM',38:'Magnetism & EM',39:'Magnetism & EM',40:'Magnetism & EM',41:'Magnetism & EM',42:'Thermal',43:'Thermal',44:'Thermal',45:'Thermal',46:'Thermal',47:'Thermal',48:'Thermal',49:'Thermal',50:'Thermal'};
+
+const SUBTOPICS={1:'Traffic Light Kinematics',2:'Traffic Light Kinematics',3:'Yellow Light Duration',4:'Two Blocks Momentum',5:'Two Blocks Work-Energy',6:'Projectile Direction',7:'Projectile Time of Flight',8:'Spring Work Done',9:'Spring SHM Period',10:'Pendulum Tension',11:'Pendulum Max Tension',12:'Friction Condition',13:'Friction Acceleration',14:'Friction Effect of h',15:'Friction Effect of m',16:'Friction Thermal Energy',17:'Pulley Acceleration',18:'Pulley Time',19:'Pulley Centre of Mass',20:'Pulley Applied Force',21:'Pulley Massive Pulley',22:'Fluid Falling Water',23:'Fluid Overflowing Bowl',24:'Fluid Buoyancy',25:'Ice Iceberg',26:'Ice After Melting',27:'Solar Panel Power',28:'Polarization Angles',29:'Polarization Intensity',30:'Total Internal Reflection',31:'Critical Angle',32:'Fiber Condition',33:'Fiber Any Angle',34:'Fiber Travel Time',35:'Electrostatics Net Force',36:'Electrostatics SHM Time',37:'Compass Direction',38:'EM Induction Loop',39:'Rail Circuit Direction',40:'Rail Circuit B Field',41:'Rail Circuit Min B',42:'Thermal Hole Expansion',43:'Thermal Ring Temperature',44:'Thermal Mixing Water',45:'Gas Spring Compression',46:'Gas Internal Energy',47:'Gas Heat Transferred',48:'Gas Work by Gas',49:'Gas Heat Removed',50:'Gas PV Cycle'};
+
+const DEFAULT_ANS={1:0,2:3,3:0,4:0,5:1,6:2,7:2,8:0,9:2,10:0,11:4,12:2,13:4,14:0,15:1,16:2,17:1,18:1,19:1,20:3,21:1,22:0,23:1,24:4,25:3,26:0,27:0,28:2,29:0,30:0,31:4,32:3,33:3,34:3,35:4,36:0,37:1,38:4,39:4,40:3,41:4,42:2,43:2,44:1,45:2,46:1,47:4,48:1,49:3,50:4};
+
+let akAnswers={...DEFAULT_ANS},allSubs=[],latestByID={};
+
+function doLogin(){
+  if(!PW||document.getElementById('inp-pw').value===PW){
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('dashboard').style.display='block';
+    loadData();
+  }else{document.getElementById('login-err').style.display='block';}
+}
+document.getElementById('inp-pw').addEventListener('keydown',e=>{if(e.key==='Enter')doLogin();});
+
+function switchTab(n){
+  document.querySelectorAll('.tab').forEach((t,i)=>t.classList.toggle('active',i===n));
+  document.querySelectorAll('.panel').forEach((p,i)=>p.classList.toggle('active',i===n));
+  if(n===4)renderAK();
+}
+
+function getId(s){return(s['student-id']||s['Student ID']||'unknown').toUpperCase().trim();}
+
+function parseAns(str){
+  const r={};
+  if(!str)return r;
+  for(const m of str.matchAll(/Q(\d+):([A-E-])\((\u2713|\u2717)\)/g)){r[+m[1]]={label:m[2],correct:m[3]==='\u2713'};}
+  return r;
+}
+
+function scCls(s,t=50){const p=s/t;return p>=0.7?'hi':p>=0.4?'mid':'lo';}
+
+async function loadData(){
+  if(window.location.protocol==='file:'){renderLocalWarning();renderAK();return;}
+  try{
+    const r=await fetch(SCRIPT_URL+'?action=getSubmissions&year='+YEAR);
+    const raw=await r.json();
+    allSubs=(Array.isArray(raw)?raw:[]).map(row=>({'student-id':row['student-id']||row['Student ID']||'','score':row['score']||row['Score']||0,'total':row['total']||row['Total']||50,'accuracy':row['accuracy']||row['Accuracy']||'0%','answers':row['answers']||row['Answers']||'','timestamp':row['timestamp']||row['Timestamp']||''}));
+    latestByID={};
+    allSubs.forEach(s=>{const id=getId(s);if(id==='UNKNOWN')return;if(!latestByID[id]||new Date(s.timestamp)>new Date(latestByID[id].timestamp))latestByID[id]=s;});
+    render();
+  }catch(e){renderLocalWarning();}
+}
+
+function renderLocalWarning(){
+  const msg='<div class="loading" style="color:var(--yellow)">&#x26A0; Open from GitHub Pages to load live data.<br><span style="font-size:11px;color:var(--muted)">intlmathphysics.github.io/SJPO2022/teacher.html</span></div>';
+  ['ov-tbody','sg-wrap','q-wrap','hm-wrap','hardest-div'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML=msg;});
+  ['st-n','st-avg','st-hi','st-lo','st-att'].forEach(id=>{document.getElementById(id).textContent='\u2013';});
+}
+
+function render(){
+  const students=Object.keys(latestByID).sort();
+  const latest=students.map(id=>latestByID[id]);
+  if(!students.length){renderEmpty();return;}
+  const scores=latest.map(s=>+(s.score||0));
+  const avg=Math.round(scores.reduce((a,b)=>a+b,0)/scores.length);
+  document.getElementById('st-n').textContent=students.length;
+  document.getElementById('st-avg').textContent=avg+'/50';
+  document.getElementById('st-hi').textContent=Math.max(...scores)+'/50';
+  document.getElementById('st-lo').textContent=Math.min(...scores)+'/50';
+  document.getElementById('st-att').textContent=allSubs.length;
+  const qC={},qT={};
+  for(let i=1;i<=50;i++){qC[i]=0;qT[i]=0;}
+  latest.forEach(s=>{Object.entries(parseAns(s.answers)).forEach(([q,d])=>{qT[+q]++;if(d.correct)qC[+q]++;});});
+  const qStats=Array.from({length:50},(_,i)=>({q:i+1,c:qC[i+1],t:qT[i+1],pct:qT[i+1]?Math.round(qC[i+1]/qT[i+1]*100):0}));
+  const hardest=qStats.filter(x=>x.t>0).sort((a,b)=>a.pct-b.pct).slice(0,5);
+  document.getElementById('hardest-div').innerHTML=hardest.length?hardest.map(x=>'<div class="q-row"><span class="q-lbl">Q'+String(x.q).padStart(2,'0')+'</span><span class="q-chapter">'+(CH[x.q]||'\u2014')+'</span><div class="bar-wrap"><div class="bar-fill" style="width:'+x.pct+'%;background:'+(x.pct<40?'var(--red)':x.pct<70?'var(--yellow)':'var(--accent)')+'"></div></div><span class="q-pct '+(x.pct<40?'lo':x.pct<70?'mid':'hi')+'">'+x.pct+'%</span><span class="q-count">'+x.c+'/'+x.t+'</span></div>').join(''):'<div class="loading">No data</div>';
+  document.getElementById('ov-tbody').innerHTML=students.map(id=>{const s=latestByID[id];const score=+(s.score||0);const attempts=allSubs.filter(x=>getId(x)===id).length;const ts=s.timestamp?new Date(s.timestamp).toLocaleString():'\u2014';return '<tr><td style="font-family:var(--mono);font-weight:700">'+id+'</td><td style="font-family:var(--mono);color:var(--muted2)">'+attempts+'</td><td><span class="'+scCls(score)+'">'+score+'/50</span></td><td><span class="'+scCls(score)+'">'+score+'/50</span></td><td style="font-size:12px;color:var(--muted2)">'+ts+'</td></tr>';}).join('');
+  renderStudents(students);
+  renderQuestions(qStats);
+  renderHeatmap(students,latest);
+}
+
+function renderEmpty(){
+  document.getElementById('ov-tbody').innerHTML='<tr><td colspan="5" class="loading">No submissions yet.</td></tr>';
+  ['sg-wrap','q-wrap','hm-wrap','hardest-div'].forEach(id=>{const el=document.getElementById(id);if(el)el.innerHTML='<div class="loading">No submissions yet.</div>';});
+  ['st-n','st-avg','st-hi','st-lo','st-att'].forEach(id=>{document.getElementById(id).textContent='0';});
+}
+
+function renderStudents(students){
+  document.getElementById('sg-wrap').innerHTML=students.map(id=>{const subs=allSubs.filter(x=>getId(x)===id).sort((a,b)=>new Date(b.timestamp)-new Date(a.timestamp));const best=Math.max(...subs.map(s=>+(s.score||0)));return '<div class="sg" id="sg-'+id+'"><div class="sg-hd" onclick="toggleSG(\''+id+'\')"><span class="sg-id">'+id+'</span><span class="sg-cnt">'+subs.length+' attempt'+(subs.length!==1?'s':'')+'</span><span class="sg-best '+scCls(best)+'">Best: '+best+'/50</span><span class="sg-chev">&#9660;</span></div><div class="sg-body"><table><thead><tr><th>#</th><th>Score</th><th>Accuracy</th><th>Submitted</th></tr></thead><tbody>'+subs.map((s,i)=>'<tr><td style="font-family:var(--mono);color:var(--muted)">'+(i+1)+'</td><td><span class="'+scCls(+(s.score||0))+'">'+s.score+'/50</span></td><td style="font-family:var(--mono);color:var(--muted2)">'+(s.accuracy||'\u2014')+'</td><td style="font-size:12px;color:var(--muted2)">'+(s.timestamp?new Date(s.timestamp).toLocaleString():'\u2014')+'</td></tr>').join('')+'</tbody></table></div></div>';}).join('');
+}
+
+function toggleSG(id){document.getElementById('sg-'+id).classList.toggle('open');}
+
+function renderQuestions(qStats){
+  const sorted=qStats.filter(x=>x.t>0).sort((a,b)=>a.pct-b.pct);
+  if(!sorted.length){document.getElementById('q-wrap').innerHTML='<div class="loading">No data yet.</div>';return;}
+  document.getElementById('q-wrap').innerHTML=sorted.map(x=>'<div class="q-row"><span class="q-lbl">Q'+String(x.q).padStart(2,'0')+'</span><span class="q-chapter">'+(CH[x.q]||'\u2014')+'</span><div class="bar-wrap"><div class="bar-fill" style="width:'+x.pct+'%;background:'+(x.pct<40?'var(--red)':x.pct<70?'var(--yellow)':'var(--accent)')+'"></div></div><span class="q-pct '+(x.pct<40?'lo':x.pct<70?'mid':'hi')+'">'+x.pct+'%</span><span class="q-count">'+x.c+'/'+x.t+'</span></div>').join('');
+}
+
+function renderHeatmap(students,latest){
+  const qs=Array.from({length:50},(_,i)=>i+1);
+  let h='<table class="hm-table"><thead><tr><th class="sid-cell">Student</th>'+qs.map(q=>'<th>Q'+q+'</th>').join('')+'</tr></thead><tbody>';
+  latest.forEach(s=>{const id=getId(s);const ans=parseAns(s.answers);h+='<tr><td class="sid-cell">'+id+'</td>'+qs.map(q=>{const a=ans[q];if(!a)return '<td class="cell-none">&middot;</td>';return '<td class="'+(a.correct?'cell-ok':'cell-bad')+'">'+(a.correct?'&#x2713;':'&#x2717;')+'</td>';}).join('')+'</tr>';});
+  h+='</tbody></table>';
+  document.getElementById('hm-wrap').innerHTML=h;
+}
+
+function renderAK(){
+  const tbody=document.getElementById('ak-tbody');
+  if(!tbody)return;
+  tbody.innerHTML=Array.from({length:50},(_,i)=>i+1).map(q=>{
+    const cur=akAnswers[q];
+    const btns=['A','B','C','D','E'].map((lbl,i)=>{const active=i===cur;const style=active?'background:var(--accent);color:#000;border:1px solid var(--accent);':'background:var(--surf2);color:var(--muted2);border:1px solid var(--border2);';return '<button onclick="setAns('+q+','+i+')" style="'+style+'font-family:var(--mono);font-size:12px;padding:4px 10px;border-radius:4px;cursor:pointer;font-weight:700;">'+lbl+'</button>';}).join('');
+    return '<tr><td style="font-family:var(--mono);font-size:13px;">Q'+String(q).padStart(2,'0')+'</td><td style="font-size:12px;color:var(--muted2);">'+(CH[q]||'\u2014')+'</td><td style="font-size:12px;color:var(--muted);">'+(SUBTOPICS[q]||'\u2014')+'</td><td style="text-align:center;font-family:var(--mono);font-size:16px;font-weight:700;color:var(--accent);">'+String.fromCharCode(65+cur)+'</td><td style="display:flex;gap:6px;padding:8px 16px;">'+btns+'</td></tr>';
+  }).join('');
+}
+
+function setAns(qid,idx){akAnswers[qid]=idx;renderAK();}
+
+async function saveAnswerKey(){
+  const btn=document.getElementById('save-ak-btn');
+  const msg=document.getElementById('ak-msg');
+  if(btn){btn.disabled=true;btn.textContent='\u23F3 Saving...';}
+  msg.textContent='';
+  try{
+    await fetch(SCRIPT_URL,{method:'POST',mode:'no-cors',headers:{'Content-Type':'application/json'},body:JSON.stringify({action:'setAnswers',year:YEAR,answers:akAnswers})});
+    msg.textContent='\u2713 Saved!';msg.style.color='var(--accent)';
+    setTimeout(()=>msg.textContent='',3000);
+  }catch(e){msg.textContent='\u2717 Error';msg.style.color='var(--red)';}
+  if(btn){btn.disabled=false;btn.textContent='\uD83D\uDCBE Save Answer Key';}
+}
+
+document.getElementById('login-screen').style.display='none';
+document.getElementById('dashboard').style.display='block';
+renderAK();
+loadData();
+</script>
+</body>
+</html>
