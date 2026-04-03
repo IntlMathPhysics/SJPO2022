@@ -558,56 +558,356 @@ const CHAPTERS=[
 ];
 
 const QS=[
-  {id:1,ch:"Kinematics & Dynamics",text:"Can he avoid running the red light if the distance to the intersection and the duration of the yellow light are: 50 m and 3 s?",opts:["Yes, by applying his brake and comes to a stop before the intersection only","Yes, by continuing to drive at the speed limit only","Yes, both a) and b) work","No, both a) and b) do not work, and he will run the red light"],ans:0},
-  {id:2,ch:"Kinematics & Dynamics",text:"Can he avoid running the red light if the distance to the intersection and the duration of the yellow light are: 40 m and 2 s?",opts:["Yes, by continuing to drive at the speed limit only","Yes, by applying his brake and comes to a stop before the intersection only","Yes, both a) and b) work","No, both a) and b) do not work, and he will run the red light"],ans:3},
-  {id:3,ch:"Kinematics & Dynamics",text:"What is the minimum duration for the yellow light so that the law-abiding driver can avoid running the red light, either by continuing to drive at the speed limit or by applying his brake and comes to a stop before the intersection, when he is approaching one?",opts:["6.33s","2.33s","4.33s","3.33s","5.33s"],ans:0},
-  {id:4,ch:"Energy, Momentum & Rotation",text:"After 5 seconds, the momentum (in kg \\(\\cdot\\) m \\(\\cdot\\) s\\(^{-1}\\)) of block B is ___",opts:["170","204","120","150","240"],ans:0},
-  {id:5,ch:"Energy, Momentum & Rotation",text:"After 5 seconds, the net work done (in J) on the block A is ___",opts:["712.5","142.5","663","112.5","855"],ans:1},
-  {id:6,ch:"Kinematics & Dynamics",text:"Which is the direction of the initial velocity of the ball?",opts:["Direction 4","Direction 2","Direction 3","Direction 1","Direction 5"],ans:2},
-  {id:7,ch:"Kinematics & Dynamics",text:"Ignoring air resistance, the time taken for the ball to land at the bottom of the cliff is ___",opts:["\\(\\frac{v_0}{g}\\left(1+\\sqrt{1+\\frac{2gh}{v_0^2}}\\right)\\)","\\(\\frac{v_0}{\\sqrt{2g}}\\left(1+\\sqrt{1+\\frac{4gh}{v_0^2}}\\right)\\)","\\(\\sqrt{2gh}\\)","\\(\\frac{v_0}{\\sqrt{2g}}\\left(\\sqrt{1+\\frac{4gh}{v_0^2}}-1\\right)\\)","\\(\\frac{v_0}{g}\\left(\\sqrt{1+\\frac{2gh}{v_0^2}}-1\\right)\\)"],ans:3},
-  {id:8,ch:"Energy, Momentum & Rotation",text:"How much is the work done by the spring on the block to move it from x = 5.0 cm to x = \\(-3.0\\) cm?",opts:["0.16J","-0.16J","0.08J","-0.08J","cannot be determined as the spring constant is not given"],ans:0},
-  {id:9,ch:"Oscillations & Waves",text:"How much time does the spring take to move block from x = 5.0 cm to x = \\(-3.0\\) cm?",opts:["0.11s","0.093s","0.22s","12.7s","2.2s"],ans:2},
-  {id:10,ch:"Kinematics & Dynamics",text:"After the release, the tension of the string is given by ___",opts:["\\(3mg\\cos\\theta\\)","\\(3mg\\sin\\theta\\)","\\(mg\\cos\\theta\\)","\\(mg\\sin\\theta\\)","\\(4mg\\cos\\theta\\)"],ans:0},
-  {id:11,ch:"Kinematics & Dynamics",text:"In order for the string not to break during the swing, it must be able to withstand a tension of ___",opts:["2 mg","4 mg","8 mg","6 mg","3 mg"],ans:4},
-  {id:12,ch:"Kinematics & Dynamics",text:"The condition for the two masses to move as one piece is ___, where \\(M = m_1 + m_2\\)",opts:["\\(\\mu_s \\leq \\frac{m_1}{m_2}\\frac{F}{Mg}\\)","\\(\\mu_s \\leq \\frac{m_2}{m_1}\\frac{F}{Mg}\\)","\\(\\mu_s \\geq \\frac{m_1}{m_2}\\frac{F}{Mg}\\)","\\(\\mu_s \\geq \\frac{m_2}{m_1}\\frac{F}{Mg}\\)","The two masses will always move as one piece since there is friction between them and no friction between the slab and the floor"],ans:2},
-  {id:13,ch:"Kinematics & Dynamics",text:"Suppose \\(m_1\\) = 50 kg and \\(m_2\\) = 20 kg, \\(\\mu_s\\) = 0.55, \\(\\mu_k\\) = 0.40 and F = 140 N, what is the resulting acceleration (in m\\(\\cdot\\)s\\(^{-2}\\)) of the block? Take g = 10 N/kg.",opts:["7.0","3.0","3.3","1.6","2.0"],ans:4},
-  {id:14,ch:"Energy, Momentum & Rotation",text:"If h is halved, D ___.",opts:["will be halved","will be unchanged","will be doubled","will be tripled","cannot be determined due to insufficient information"],ans:0},
-  {id:15,ch:"Energy, Momentum & Rotation",text:"If m is doubled, D ___.",opts:["will be halved","will be unchanged","will be doubled","will be tripled","cannot be determined due to insufficient information"],ans:1},
-  {id:16,ch:"Energy, Momentum & Rotation",text:"If \\(m\\) is doubled, the total thermal energy generated due to friction as the block slides to a stop ___",opts:["is halved","is unchanged","is doubled","is tripled","cannot be determined due to insufficient information"],ans:2},
-  {id:17,ch:"Energy, Momentum & Rotation",text:"\\(M\\) is fixed to the floor, and the pulley is massless. After \\(m_1\\) is released from rest, both \\(m_1\\) and \\(m_2\\) move smoothly with a constant acceleration and the string remains taut. What is the acceleration of blocks \\(m_1\\) and \\(m_2\\)?",opts:["\\(\\frac{m_1}{m_1+m_2}g\\)","\\(\\frac{m_2}{m_1+m_2}g\\)","\\(g\\)","\\(\\frac{m_1+m_2}{m_1}g\\)","\\(\\frac{m_1+m_2}{m_2}g\\)"],ans:1},
-  {id:18,ch:"Energy, Momentum & Rotation",text:"What is the time taken for \\(m_2\\) to reach the floor after \\(m_1\\) is released from rest?",opts:["\\(\\sqrt{\\frac{2h(m_1+m_2)}{m_1 g}}\\)","\\(\\sqrt{\\frac{2h(m_1+m_2)}{m_2 g}}\\)","\\(\\sqrt{\\frac{2h}{g}}\\)","\\(\\sqrt{\\frac{2h m_1}{(m_1+m_2)g}}\\)","\\(\\sqrt{\\frac{2h m_2}{(m_1+m_2)g}}\\)"],ans:1},
-  {id:19,ch:"Energy, Momentum & Rotation",text:"For questions 19 and 20, all assumptions remain except that \\(M\\) is no longer fixed to the floor but can move without friction on the floor. By considering the motion (or non-motion) of the center of mass and/or otherwise, when \\(m_2\\) reaches the floor, what is the distance moved by \\(M\\)? State in which direction if it has moved.",opts:["0","\\(\\frac{m_1 h}{M+m_1+m_2}\\), leftward","\\(\\frac{m_1 h}{M+m_1+m_2}\\), rightward","\\(\\frac{m_1 h}{M+m_2}\\), leftward","\\(\\frac{m_1 h}{M+m_2}\\), rightward"],ans:1},
-  {id:20,ch:"Energy, Momentum & Rotation",text:"By applying a constant rightward force on \\(M\\), both \\(m_1\\) and \\(m_2\\) can remain at rest relative to \\(M\\) without having to hold them. This force is ___",opts:["\\(\\frac{m_1}{(M+m_1+m_2)m_2}g\\)","\\(\\frac{m_2}{(M+m_1+m_2)m_1}g\\)","\\(\\frac{(M+m_1+m_2)m_1}{m_2}g\\)","\\(\\frac{(M+m_1+m_2)m_2}{m_1}g\\)","none of the above"],ans:3},
-  {id:21,ch:"Energy, Momentum & Rotation",text:"For this question, assume that \\(M\\) is fixed to the floor, and the mass and radius of the pulley is \\(m_3\\) and \\(R\\), respectively. What is the acceleration of blocks \\(m_1\\) and \\(m_2\\)? Hint: Take the moment of inertia of the pulley as \\(I = \\frac{1}{2}m_3R^2\\)",opts:["\\(\\frac{m_1}{m_1+m_2+\\frac{m_3}{2}}g\\)","\\(\\frac{m_2}{m_1+m_2+\\frac{m_3}{2}}g\\)","\\(\\left(1-\\frac{m_3}{2(m_1+m_2)}\\right)g\\)","\\(\\frac{m_1+m_2+\\frac{m_3}{2}}{m_1}g\\)","\\(\\frac{m_1+m_2+\\frac{m_3}{2}}{m_2}g\\)"],ans:1},
-  {id:22,ch:"Optics & Fluids",text:"Water is flowing vertically downward from a tap at a moderate speed. As it falls, the water column's diameter ___",opts:["decreases","remains unchanged","increases","decreases in Northern Hemisphere but increases in Southern Hemisphere","increases in Northern Hemisphere but decreases in Southern Hemisphere"],ans:0},
-  {id:23,ch:"Optics & Fluids",text:"Water is dripping drop by drop from a tap into a bowl placed on a nearly horizontal surface as shown. The bowl is just a couple of cm below the tap. Eventually the bowl is filled and ___",opts:["water will run off the edge of the bowl drop by drop in succession.","water will run off the edge of the bowl in a narrow stream for a little while and stop for a little while, and this pattern is repeated.","water will run off the edge of the bowl in a narrow stream continuously.","water will run off the edge of the bowl drop by drop in succession for several drops, then will stop for a little while, and this pattern is repeated."],ans:1},
-  {id:24,ch:"Optics & Fluids",text:"How much weight can a Styrofoam cup of volume 200 cm\\(^3\\) carry before it sinks in water? Assume the weight of Styrofoam is negligible and take the density of water as 1 g·cm\\(^{-3}\\).",opts:["0.2 N","5 N","20 N","1 N","2 N"],ans:4},
-  {id:25,ch:"Optics & Fluids",text:"What percentage of an iceberg made up of pure ice is above the surface of the seawater?",opts:["9%","8%","12%","11%","10%"],ans:3},
-  {id:26,ch:"Optics & Fluids",text:"A piece of pure ice is gently placed into a measuring cylinder containing seawater. The ice floats and the seawater level is noted. After the ice has melted, the seawater level will ___",opts:["rise","stay the same","drop","depend on the amount of the pure ice, i.e. can be either a) or b) or c)"],ans:0},
-  {id:27,ch:"Optics & Fluids",text:"The solar irradiance (solar power per unit area) at the ground level is approximately 1000 W/m\\(^2\\) when the sun is directly overhead. A solar panel has an efficiency of 20%. Neglecting any differences in atmospheric losses, when the sun is 40° above the horizon the power output (in W/m\\(^2\\)) from the solar panel placed flat at ground level is approximately ___",opts:["130","170","200","150","cannot be estimated"],ans:0},
-  {id:28,ch:"Magnetism & EM",text:"Which of the following is a possible set of values for \\(\\theta_1\\) and \\(\\theta_3\\)?",opts:["\\(\\theta_1=60°, \\theta_3=90°\\)","\\(\\theta_1=60°, \\theta_3=150°\\)","\\(\\theta_1=150°, \\theta_3=50°\\)","\\(\\theta_1=150°, \\theta_3=60°\\)","none of the above"],ans:2},
-  {id:29,ch:"Magnetism & EM",text:"What percentage of the light's initial intensity is transmitted by the three-sheet system when \\(\\theta_2\\) is 100°?",opts:["8.5%","17%","12%","41%","20.5%"],ans:0},
-  {id:30,ch:"Optics & Fluids",text:"Consider the incidence of light at the interface for light coming from the layer of refractive index \\(n_1\\). For total internal reflection at the interface to occur, it is necessary that ___",opts:["\\(n_2 < n_1\\)","\\(n_2 = n_1\\)","\\(n_2 > n_1\\)","\\(n_1^2 + n_2^2 = 1\\)"],ans:0},
-  {id:31,ch:"Optics & Fluids",text:"If the angle of incidence \\(i\\) is greater than a certain critical angle, total internal reflection occurs. The sine of the critical angle equals ___",opts:["\\(\\frac{n_1^2}{n_2^2}\\)","\\(\\frac{n_2^2}{n_1^2}\\)","\\(\\frac{n_1}{c}\\)","\\(\\frac{n_1}{n_2}\\)","\\(\\frac{n_2}{n_1}\\)"],ans:4},
-  {id:32,ch:"Optics & Fluids",text:"When light is incident at an angle \\(\\theta\\) at the middle of layer A, it undergoes refraction and travels to the top interface. Under a certain condition, the light not only undergoes total internal reflection at the top interface, but travels to the bottom interface where it again undergoes total internal reflection, and this pattern is repeated until the light exits at B. The condition is ___",opts:["\\(\\sin\\theta < n_2-n_1\\)","\\(\\sin\\theta < n_1-n_2\\)","\\(\\sin\\theta < \\sqrt{n_2^2-n_1^2}\\)","\\(\\sin\\theta < \\sqrt{n_1^2-n_2^2}\\)"],ans:3},
-  {id:33,ch:"Optics & Fluids",text:"The incident angle \\(\\theta\\) can be any value between 0° and 90° if the following further condition holds, namely ___",opts:["\\(n_2-n_1>1\\)","\\(n_1-n_2>1\\)","\\(n_2^2-n_1^2>1\\)","\\(n_1^2-n_2^2>1\\)"],ans:3},
-  {id:34,ch:"Optics & Fluids",text:"The time taken for the light to travel from A to B is ___",opts:["\\(\\frac{l}{c}\\)","\\(\\frac{ln_1n_2}{c\\sqrt{n_1n_2-\\sin\\theta}}\\)","\\(\\frac{ln_2}{c\\sqrt{n_2-\\sin\\theta}}\\)","\\(\\frac{ln_1^2}{c\\sqrt{n_1^2-\\sin^2\\theta}}\\)","\\(\\frac{ln_2^2}{c\\sqrt{n_2^2-\\sin^2\\theta}}\\)"],ans:3},
-  {id:35,ch:"Electricity",text:"The net force on \\(q\\) at the point \\(x\\) is given by ___",opts:["\\(-\\frac{kQq}{rx}\\)","\\(\\frac{kQq}{rx}\\)","\\(-\\frac{kQq}{r^3}x\\)","\\(\\frac{kQq}{r^3}x\\)","\\(-\\frac{4kQq}{r^3}x\\)"],ans:4},
-  {id:36,ch:"Electricity",text:"The time taken for the charge \\(q\\) to move to O is ___",opts:["\\(\\frac{\\pi r}{4}\\sqrt{\\frac{mr}{kQq}}\\)","\\(\\frac{\\pi r}{2}\\sqrt{\\frac{mr}{kQq}}\\)","\\(\\frac{\\pi}{4r}\\sqrt{\\frac{kQq}{mr}}\\)","\\(\\frac{\\pi}{2r}\\sqrt{\\frac{kQq}{mr}}\\)","\\(\\frac{\\pi}{2}\\sqrt{\\frac{mr}{kQq}}x\\)"],ans:0},
-  {id:37,ch:"Magnetism & EM",text:"A compass is placed near a solenoid. When there is no current in the solenoid, the compass needle points due north as shown. When there is current from X to Y, the magnetic field of the solenoid at the compass is equal in magnitude to the Earth's magnetic field at that point. In which direction does the compass set?",opts:["A: straight up (north)","B: northeast (45° diagonal)","C: east (rightward)","D: southeast (45° diagonal)","E: straight down (south)"],ans:1},
-  {id:38,ch:"Magnetism & EM",text:"You push a bar magnet with its north pole away from you toward a loop of conducting wire in front of you. The plane containing the loop is perpendicular to the magnet. As the north pole approaches the loop, the current in the loop is ___",opts:["clockwise then counterclockwise","counterclockwise then clockwise","zero","clockwise","counterclockwise"],ans:4},
-  {id:39,ch:"Magnetism & EM",text:"We want to lift the mass by passing as small as possible a magnetic field \\(B\\) through the circuit. In which direction should the magnetic field point?",opts:["any direction will do","horizontal leftward","horizontal rightward","vertically downward","vertically upward"],ans:4},
-  {id:40,ch:"Magnetism & EM",text:"Let the magnetic field be increased from zero at a constant rate so that the mass \\(m\\) starts to move up at 1 second. The value of the magnetic field at this time is ___",opts:["3 T","2 T","4 T","10 T","5 T"],ans:3},
-  {id:41,ch:"Magnetism & EM",text:"If the rate of increase of the magnetic field \\(B\\) approaches zero, the magnitude of the magnetic field required approaches ___",opts:["3 T","2 T","4 T","10 T","5 T"],ans:4},
-  {id:42,ch:"Thermal Physics",text:"A hole is cut from a sheet metal. When the temperature of the sheet metal increases, the hole ___",opts:["gets smaller","remains the same size","gets bigger","can be a) or b) or c) depending on the shape of the hole."],ans:2},
-  {id:43,ch:"Thermal Physics",text:"An iron ring is to fit tightly on a cylindrical iron rod. At 25°C, the diameter of the rod is 6.492 cm and the inside diameter of the ring is 6.480 cm. To slip over the rod, the ring must be larger than the rod diameter by about 0.008 cm. To what temperature must the ring be heated? Take the coefficient of linear expansion of iron = 12 × 10\\(^{-6}\\).",opts:["230°C","257°C","282°C","303°C","448°C"],ans:2},
-  {id:44,ch:"Thermal Physics",text:"It is recommended to use water of approximately 80°C to make green tea. This can be prepared by mixing \\(x\\) litres of water at room temperature (28°C) with every litre of water at 100°C. Neglecting the small changes in the density of water as its temperature changes, the value of \\(x\\) ___",opts:["is 0.5","is 0.4","is 0.2","is 2.6","cannot be determined"],ans:1},
-  {id:45,ch:"Thermal Physics",text:"Initially the system is at equilibrium with partitions A and B being stationary, G's temperature and volume are \\(T_0\\) and \\(V_0\\) respectively, and the compression of the spring is \\(x_0\\). The compression \\(x_0\\) of the spring is given by ___",opts:["\\(\\frac{P_0 S}{3k}\\)","\\(\\frac{P_0 S}{2k}\\)","\\(\\frac{P_0 S}{k}\\)","\\(\\frac{2P_0 S}{k}\\)","\\(\\frac{3P_0 S}{k}\\)"],ans:2},
-  {id:46,ch:"Thermal Physics",text:"Now the ideal gas G is heated up slowly to temperature \\(T_1\\) while keeping partition B fixed by holding the rod. The spring is observed to have compressed by \\(x_1\\). The change in the internal energy of G (internal energy at \\(T_1\\) minus internal energy at \\(T_0\\)) is given by ___",opts:["\\(nR(T_1-T_0)\\)","\\(\\frac{3}{2}nR(T_1-T_0)\\)","\\(\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(\\frac{3}{2}nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)"],ans:1},
-  {id:47,ch:"Thermal Physics",text:"While heating G from \\(T_0\\) to \\(T_1\\) with partition B held fixed, the amount of heat transferred to G is given by ___",opts:["\\(nR(T_1-T_0)\\)","\\(\\frac{3}{2}nR(T_1-T_0)\\)","\\(\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(\\frac{3}{2}nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)"],ans:4},
-  {id:48,ch:"Thermal Physics",text:"After G reaches temperature \\(T_1\\), the heating is turned off. Partition B slowly moves a distance \\(d\\) to the right and G's temperature reduces to \\(T_2\\) as you slowly reduce your force on the rod to zero. What is the work done by G on your hand as B moves the distance \\(d\\)? Let I. \\(nR(T_1-T_2)\\), II. \\(\\frac{3}{2}nR(T_1-T_2)\\), III. \\(\\frac{1}{2}k(x_1^2-x_0^2)\\), and IV. \\(P_0 Sd\\)",opts:["I + III − IV","I + III + IV","II − IV","II + III − IV","IV"],ans:1},
-  {id:49,ch:"Thermal Physics",text:"You let go of the rod and heat is removed from G slowly until G returns to its initial state of pressure \\(P_0\\) and volume \\(V_0\\). How much heat is removed? Let I. \\(nR(T_2-T_0)\\), II. \\(\\frac{3}{2}nR(T_2-T_0)\\), III. \\(P_0 Sd\\)",opts:["I − III","I + III","II − III","II + III","IV"],ans:3},
-  {id:50,ch:"Thermal Physics",text:"As described between questions 45 to 49, the complete cycle of processes that the ideal gas G undergoes, starting from and returning to the pressure \\(P_0\\) and volume \\(V_0\\), is described by which of the following graphs?",opts:["Graph a)","Graph b)","Graph c)","Graph d)","Graph e)"],ans:4},
+  {
+    id:1,
+    ch:"Kinematics & Dynamics",
+    text:"Can he avoid running the red light if the distance to the intersection and the duration of the yellow light are: 50 m and 3 s?",
+    opts:["Yes, by applying his brake and comes to a stop before the intersection only","Yes, by continuing to drive at the speed limit only","Yes, both a) and b) work","No, both a) and b) do not work, and he will run the red light"],
+    ans:0
+  },
+  {
+    id:2,
+    ch:"Kinematics & Dynamics",
+    text:"Can he avoid running the red light if the distance to the intersection and the duration of the yellow light are: 40 m and 2 s?",
+    opts:["Yes, by continuing to drive at the speed limit only","Yes, by applying his brake and comes to a stop before the intersection only","Yes, both a) and b) work","No, both a) and b) do not work, and he will run the red light"],
+    ans:3
+  },
+  {
+    id:3,
+    ch:"Kinematics & Dynamics",
+    text:"What is the minimum duration for the yellow light so that the law-abiding driver can avoid running the red light, either by continuing to drive at the speed limit or by applying his brake and comes to a stop before the intersection, when he is approaching one?",
+    opts:["6.33s","2.33s","4.33s","3.33s","5.33s"],
+    ans:3
+  },
+  {
+    id:4,
+    ch:"Energy, Momentum & Rotation",
+    text:"After 5 seconds, the momentum (in kg \\(\\cdot\\) m \\(\\cdot\\) s\\(^{-1}\\)) of block B is ___",
+    opts:["170","204","120","150","240"],
+    ans:0
+  },
+  {
+    id:5,
+    ch:"Energy, Momentum & Rotation",
+    text:"After 5 seconds, the net work done (in J) on the block A is ___",
+    opts:["712.5","142.5","663","112.5","855"],
+    ans:1
+  },
+  {
+    id:6,
+    ch:"Kinematics & Dynamics",
+    text:"Which is the direction of the initial velocity of the ball?",
+    opts:["Direction 4","Direction 2","Direction 3","Direction 1","Direction 5"],
+    ans:2
+  },
+  {
+    id:7,
+    ch:"Kinematics & Dynamics",
+    text:"Ignoring air resistance, the time taken for the ball to land at the bottom of the cliff is ___",
+    opts:["\\(\\frac{v_0}{g}\\left(1+\\sqrt{1+\\frac{2gh}{v_0^2}}\\right)\\)","\\(\\frac{v_0}{\\sqrt{2g}}\\left(1+\\sqrt{1+\\frac{4gh}{v_0^2}}\\right)\\)","\\(\\sqrt{2gh}\\)","\\(\\frac{v_0}{\\sqrt{2g}}\\left(\\sqrt{1+\\frac{4gh}{v_0^2}}-1\\right)\\)","\\(\\frac{v_0}{g}\\left(\\sqrt{1+\\frac{2gh}{v_0^2}}-1\\right)\\)"],
+    ans:3
+  },
+  {
+    id:8,
+    ch:"Energy, Momentum & Rotation",
+    text:"How much is the work done by the spring on the block to move it from x = 5.0 cm to x = \\(-3.0\\) cm?",
+    opts:["0.16J","-0.16J","0.08J","-0.08J","cannot be determined as the spring constant is not given"],
+    ans:0
+  },
+  {
+    id:9,
+    ch:"Oscillations & Waves",
+    text:"How much time does the spring take to move block from x = 5.0 cm to x = \\(-3.0\\) cm?",
+    opts:["0.11s","0.093s","0.22s","12.7s","2.2s"],
+    ans:2
+  },
+  {
+    id:10,
+    ch:"Kinematics & Dynamics",
+    text:"After the release, the tension of the string is given by ___",
+    opts:["\\(3mg\\cos\\theta\\)","\\(3mg\\sin\\theta\\)","\\(mg\\cos\\theta\\)","\\(mg\\sin\\theta\\)","\\(4mg\\cos\\theta\\)"],
+    ans:0
+  },
+  {
+    id:11,
+    ch:"Kinematics & Dynamics",
+    text:"In order for the string not to break during the swing, it must be able to withstand a tension of ___",
+    opts:["2 mg","4 mg","8 mg","6 mg","3 mg"],
+    ans:4
+  },
+  {
+    id:12,
+    ch:"Kinematics & Dynamics",
+    text:"The condition for the two masses to move as one piece is ___, where \\(M = m_1 + m_2\\)",
+    opts:["\\(\\mu_s \\leq \\frac{m_1}{m_2}\\frac{F}{Mg}\\)","\\(\\mu_s \\leq \\frac{m_2}{m_1}\\frac{F}{Mg}\\)","\\(\\mu_s \\geq \\frac{m_1}{m_2}\\frac{F}{Mg}\\)","\\(\\mu_s \\geq \\frac{m_2}{m_1}\\frac{F}{Mg}\\)","The two masses will always move as one piece since there is friction between them and no friction between the slab and the floor"],
+    ans:2
+  },
+  {
+    id:13,
+    ch:"Kinematics & Dynamics",
+    text:"Suppose \\(m_1\\) = 50 kg and \\(m_2\\) = 20 kg, \\(\\mu_s\\) = 0.55, \\(\\mu_k\\) = 0.40 and F = 140 N, what is the resulting acceleration (in m\\(\\cdot\\)s\\(^{-2}\\)) of the block? Take g = 10 N/kg.",
+    opts:["7.0","3.0","3.3","1.6","2.0"],
+    ans:4
+  },
+  {
+    id:14,
+    ch:"Energy, Momentum & Rotation",
+    text:"If h is halved, D ___.",
+    opts:["will be halved","will be unchanged","will be doubled","will be tripled","cannot be determined due to insufficient information"],
+    ans:0
+  },
+  {
+    id:15,
+    ch:"Energy, Momentum & Rotation",
+    text:"If m is doubled, D ___.",
+    opts:["will be halved","will be unchanged","will be doubled","will be tripled","cannot be determined due to insufficient information"],
+    ans:1
+  },
+  {
+    id:16,
+    ch:"Energy, Momentum & Rotation",
+    text:"If \\(m\\) is doubled, the total thermal energy generated due to friction as the block slides to a stop ___",
+    opts:["is halved","is unchanged","is doubled","is tripled","cannot be determined due to insufficient information"],
+    ans:2
+  },
+  {
+    id:17,
+    ch:"Energy, Momentum & Rotation",
+    text:"\\(M\\) is fixed to the floor, and the pulley is massless. After \\(m_1\\) is released from rest, both \\(m_1\\) and \\(m_2\\) move smoothly with a constant acceleration and the string remains taut. What is the acceleration of blocks \\(m_1\\) and \\(m_2\\)?",
+    opts:["\\(\\frac{m_1}{m_1+m_2}g\\)","\\(\\frac{m_2}{m_1+m_2}g\\)","\\(g\\)","\\(\\frac{m_1+m_2}{m_1}g\\)","\\(\\frac{m_1+m_2}{m_2}g\\)"],
+    ans:1
+  },
+  {
+    id:18,
+    ch:"Energy, Momentum & Rotation",
+    text:"What is the time taken for \\(m_2\\) to reach the floor after \\(m_1\\) is released from rest?",
+    opts:["\\(\\sqrt{\\frac{2h(m_1+m_2)}{m_1 g}}\\)","\\(\\sqrt{\\frac{2h(m_1+m_2)}{m_2 g}}\\)","\\(\\sqrt{\\frac{2h}{g}}\\)","\\(\\sqrt{\\frac{2h m_1}{(m_1+m_2)g}}\\)","\\(\\sqrt{\\frac{2h m_2}{(m_1+m_2)g}}\\)"],
+    ans:1
+  },
+  {
+    id:19,
+    ch:"Energy, Momentum & Rotation",
+    text:"For questions 19 and 20, all assumptions remain except that \\(M\\) is no longer fixed to the floor but can move without friction on the floor. By considering the motion (or non-motion) of the center of mass and/or otherwise, when \\(m_2\\) reaches the floor, what is the distance moved by \\(M\\)? State in which direction if it has moved.",
+    opts:["0","\\(\\frac{m_1 h}{M+m_1+m_2}\\), leftward","\\(\\frac{m_1 h}{M+m_1+m_2}\\), rightward","\\(\\frac{m_1 h}{M+m_2}\\), leftward","\\(\\frac{m_1 h}{M+m_2}\\), rightward"],
+    ans:1
+  },
+  {
+    id:20,
+    ch:"Energy, Momentum & Rotation",
+    text:"By applying a constant rightward force on \\(M\\), both \\(m_1\\) and \\(m_2\\) can remain at rest relative to \\(M\\) without having to hold them. This force is ___",
+    opts:["\\(\\frac{m_1}{(M+m_1+m_2)m_2}g\\)","\\(\\frac{m_2}{(M+m_1+m_2)m_1}g\\)","\\(\\frac{(M+m_1+m_2)m_1}{m_2}g\\)","\\(\\frac{(M+m_1+m_2)m_2}{m_1}g\\)","none of the above"],
+    ans:3
+  },
+  {
+    id:21,
+    ch:"Energy, Momentum & Rotation",
+    text:"For this question, assume that \\(M\\) is fixed to the floor, and the mass and radius of the pulley is \\(m_3\\) and \\(R\\), respectively. What is the acceleration of blocks \\(m_1\\) and \\(m_2\\)? Hint: Take the moment of inertia of the pulley as \\(I = \\frac{1}{2}m_3R^2\\)",
+    opts:["\\(\\frac{m_1}{m_1+m_2+\\frac{m_3}{2}}g\\)","\\(\\frac{m_2}{m_1+m_2+\\frac{m_3}{2}}g\\)","\\(\\left(1-\\frac{m_3}{2(m_1+m_2)}\\right)g\\)","\\(\\frac{m_1+m_2+\\frac{m_3}{2}}{m_1}g\\)","\\(\\frac{m_1+m_2+\\frac{m_3}{2}}{m_2}g\\)"],
+    ans:1
+  },
+  {
+    id:22,
+    ch:"Optics & Fluids",
+    text:"Water is flowing vertically downward from a tap at a moderate speed. As it falls, the water column's diameter ___",
+    opts:["decreases","remains unchanged","increases","decreases in Northern Hemisphere but increases in Southern Hemisphere","increases in Northern Hemisphere but decreases in Southern Hemisphere"],
+    ans:0
+  },
+  {
+    id:23,
+    ch:"Optics & Fluids",
+    text:"Water is dripping drop by drop from a tap into a bowl placed on a nearly horizontal surface as shown. The bowl is just a couple of cm below the tap. Eventually the bowl is filled and ___",
+    opts:["water will run off the edge of the bowl drop by drop in succession.","water will run off the edge of the bowl in a narrow stream for a little while and stop for a little while, and this pattern is repeated.","water will run off the edge of the bowl in a narrow stream continuously.","water will run off the edge of the bowl drop by drop in succession for several drops, then will stop for a little while, and this pattern is repeated."],
+    ans:1
+  },
+  {
+    id:24,
+    ch:"Optics & Fluids",
+    text:"How much weight can a Styrofoam cup of volume 200 cm\\(^3\\) carry before it sinks in water? Assume the weight of Styrofoam is negligible and take the density of water as 1 g·cm\\(^{-3}\\).",
+    opts:["0.2 N","5 N","20 N","1 N","2 N"],
+    ans:4
+  },
+  {
+    id:25,
+    ch:"Optics & Fluids",
+    text:"What percentage of an iceberg made up of pure ice is above the surface of the seawater?",
+    opts:["9%","8%","12%","11%","10%"],
+    ans:3
+  },
+  {
+    id:26,
+    ch:"Optics & Fluids",
+    text:"A piece of pure ice is gently placed into a measuring cylinder containing seawater. The ice floats and the seawater level is noted. After the ice has melted, the seawater level will ___",
+    opts:["rise","stay the same","drop","depend on the amount of the pure ice, i.e. can be either a) or b) or c)"],
+    ans:0
+  },
+  {
+    id:27,
+    ch:"Optics & Fluids",
+    text:"The solar irradiance (solar power per unit area) at the ground level is approximately 1000 W/m\\(^2\\) when the sun is directly overhead. A solar panel has an efficiency of 20%. Neglecting any differences in atmospheric losses, when the sun is 40° above the horizon the power output (in W/m\\(^2\\)) from the solar panel placed flat at ground level is approximately ___",
+    opts:["130","170","200","150","cannot be estimated"],
+    ans:0
+  },
+  {
+    id:28,
+    ch:"Magnetism & EM",
+    text:"Which of the following is a possible set of values for \\(\\theta_1\\) and \\(\\theta_3\\)?",
+    opts:["\\(\\theta_1=60°, \\theta_3=90°\\)","\\(\\theta_1=60°, \\theta_3=150°\\)","\\(\\theta_1=150°, \\theta_3=50°\\)","\\(\\theta_1=150°, \\theta_3=60°\\)","none of the above"],
+    ans:2
+  },
+  {
+    id:29,
+    ch:"Magnetism & EM",
+    text:"What percentage of the light's initial intensity is transmitted by the three-sheet system when \\(\\theta_2\\) is 100°?",
+    opts:["8.5%","17%","12%","41%","20.5%"],
+    ans:0
+  },
+  {
+    id:30,
+    ch:"Optics & Fluids",
+    text:"Consider the incidence of light at the interface for light coming from the layer of refractive index \\(n_1\\). For total internal reflection at the interface to occur, it is necessary that ___",
+    opts:["\\(n_2 < n_1\\)","\\(n_2 = n_1\\)","\\(n_2 > n_1\\)","\\(n_1^2 + n_2^2 = 1\\)"],
+    ans:0
+  },
+  {
+    id:31,
+    ch:"Optics & Fluids",
+    text:"If the angle of incidence \\(i\\) is greater than a certain critical angle, total internal reflection occurs. The sine of the critical angle equals ___",
+    opts:["\\(\\frac{n_1^2}{n_2^2}\\)","\\(\\frac{n_2^2}{n_1^2}\\)","\\(\\frac{n_1}{c}\\)","\\(\\frac{n_1}{n_2}\\)","\\(\\frac{n_2}{n_1}\\)"],
+    ans:4
+  },
+  {
+    id:32,
+    ch:"Optics & Fluids",
+    text:"When light is incident at an angle \\(\\theta\\) at the middle of layer A, it undergoes refraction and travels to the top interface. Under a certain condition, the light not only undergoes total internal reflection at the top interface, but travels to the bottom interface where it again undergoes total internal reflection, and this pattern is repeated until the light exits at B. The condition is ___",
+    opts:["\\(\\sin\\theta < n_2-n_1\\)","\\(\\sin\\theta < n_1-n_2\\)","\\(\\sin\\theta < \\sqrt{n_2^2-n_1^2}\\)","\\(\\sin\\theta < \\sqrt{n_1^2-n_2^2}\\)"],
+    ans:3
+  },
+  {
+    id:33,
+    ch:"Optics & Fluids",
+    text:"The incident angle \\(\\theta\\) can be any value between 0° and 90° if the following further condition holds, namely ___",
+    opts:["\\(n_2-n_1>1\\)","\\(n_1-n_2>1\\)","\\(n_2^2-n_1^2>1\\)","\\(n_1^2-n_2^2>1\\)"],
+    ans:3
+  },
+  {
+    id:34,
+    ch:"Optics & Fluids",
+    text:"The time taken for the light to travel from A to B is ___",
+    opts:["\\(\\frac{l}{c}\\)","\\(\\frac{ln_1n_2}{c\\sqrt{n_1n_2-\\sin\\theta}}\\)","\\(\\frac{ln_2}{c\\sqrt{n_2-\\sin\\theta}}\\)","\\(\\frac{ln_1^2}{c\\sqrt{n_1^2-\\sin^2\\theta}}\\)","\\(\\frac{ln_2^2}{c\\sqrt{n_2^2-\\sin^2\\theta}}\\)"],
+    ans:3
+  },
+  {
+    id:35,
+    ch:"Electricity",
+    text:"The net force on \\(q\\) at the point \\(x\\) is given by ___",
+    opts:["\\(-\\frac{kQq}{rx}\\)","\\(\\frac{kQq}{rx}\\)","\\(-\\frac{kQq}{r^3}x\\)","\\(\\frac{kQq}{r^3}x\\)","\\(-\\frac{4kQq}{r^3}x\\)"],
+    ans:4
+  },
+  {
+    id:36,
+    ch:"Electricity",
+    text:"The time taken for the charge \\(q\\) to move to O is ___",
+    opts:["\\(\\frac{\\pi r}{4}\\sqrt{\\frac{mr}{kQq}}\\)","\\(\\frac{\\pi r}{2}\\sqrt{\\frac{mr}{kQq}}\\)","\\(\\frac{\\pi}{4r}\\sqrt{\\frac{kQq}{mr}}\\)","\\(\\frac{\\pi}{2r}\\sqrt{\\frac{kQq}{mr}}\\)","\\(\\frac{\\pi}{2}\\sqrt{\\frac{mr}{kQq}}x\\)"],
+    ans:0
+  },
+  {
+    id:37,
+    ch:"Magnetism & EM",
+    text:"A compass is placed near a solenoid. When there is no current in the solenoid, the compass needle points due north as shown. When there is current from X to Y, the magnetic field of the solenoid at the compass is equal in magnitude to the Earth's magnetic field at that point. In which direction does the compass set?",
+    opts:["A: straight up (north)","B: northeast (45° diagonal)","C: east (rightward)","D: southeast (45° diagonal)","E: straight down (south)"],
+    ans:1
+  },
+  {
+    id:38,
+    ch:"Magnetism & EM",
+    text:"You push a bar magnet with its north pole away from you toward a loop of conducting wire in front of you. The plane containing the loop is perpendicular to the magnet. As the north pole approaches the loop, the current in the loop is ___",
+    opts:["clockwise then counterclockwise","counterclockwise then clockwise","zero","clockwise","counterclockwise"],
+    ans:4
+  },
+  {
+    id:39,
+    ch:"Magnetism & EM",
+    text:"We want to lift the mass by passing as small as possible a magnetic field \\(B\\) through the circuit. In which direction should the magnetic field point?",
+    opts:["any direction will do","horizontal leftward","horizontal rightward","vertically downward","vertically upward"],
+    ans:4
+  },
+  {
+    id:40,
+    ch:"Magnetism & EM",
+    text:"Let the magnetic field be increased from zero at a constant rate so that the mass \\(m\\) starts to move up at 1 second. The value of the magnetic field at this time is ___",
+    opts:["3 T","2 T","4 T","10 T","5 T"],
+    ans:3
+  },
+  {
+    id:41,
+    ch:"Magnetism & EM",
+    text:"If the rate of increase of the magnetic field \\(B\\) approaches zero, the magnitude of the magnetic field required approaches ___",
+    opts:["3 T","2 T","4 T","10 T","5 T"],
+    ans:4
+  },
+  {
+    id:42,
+    ch:"Thermal Physics",
+    text:"A hole is cut from a sheet metal. When the temperature of the sheet metal increases, the hole ___",
+    opts:["gets smaller","remains the same size","gets bigger","can be a) or b) or c) depending on the shape of the hole."],
+    ans:2
+  },
+  {
+    id:43,
+    ch:"Thermal Physics",
+    text:"An iron ring is to fit tightly on a cylindrical iron rod. At 25°C, the diameter of the rod is 6.492 cm and the inside diameter of the ring is 6.480 cm. To slip over the rod, the ring must be larger than the rod diameter by about 0.008 cm. To what temperature must the ring be heated? Take the coefficient of linear expansion of iron = 12 × 10\\(^{-6}\\).",
+    opts:["230°C","257°C","282°C","303°C","448°C"],
+    ans:2
+  },
+  {
+    id:44,
+    ch:"Thermal Physics",
+    text:"It is recommended to use water of approximately 80°C to make green tea. This can be prepared by mixing \\(x\\) litres of water at room temperature (28°C) with every litre of water at 100°C. Neglecting the small changes in the density of water as its temperature changes, the value of \\(x\\) ___",
+    opts:["is 0.5","is 0.4","is 0.2","is 2.6","cannot be determined"],
+    ans:1
+  },
+  {
+    id:45,
+    ch:"Thermal Physics",
+    text:"Initially the system is at equilibrium with partitions A and B being stationary, G's temperature and volume are \\(T_0\\) and \\(V_0\\) respectively, and the compression of the spring is \\(x_0\\). The compression \\(x_0\\) of the spring is given by ___",
+    opts:["\\(\\frac{P_0 S}{3k}\\)","\\(\\frac{P_0 S}{2k}\\)","\\(\\frac{P_0 S}{k}\\)","\\(\\frac{2P_0 S}{k}\\)","\\(\\frac{3P_0 S}{k}\\)"],
+    ans:2
+  },
+  {
+    id:46,
+    ch:"Thermal Physics",
+    text:"Now the ideal gas G is heated up slowly to temperature \\(T_1\\) while keeping partition B fixed by holding the rod. The spring is observed to have compressed by \\(x_1\\). The change in the internal energy of G (internal energy at \\(T_1\\) minus internal energy at \\(T_0\\)) is given by ___",
+    opts:["\\(nR(T_1-T_0)\\)","\\(\\frac{3}{2}nR(T_1-T_0)\\)","\\(\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(\\frac{3}{2}nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)"],
+    ans:1
+  },
+  {
+    id:47,
+    ch:"Thermal Physics",
+    text:"While heating G from \\(T_0\\) to \\(T_1\\) with partition B held fixed, the amount of heat transferred to G is given by ___",
+    opts:["\\(nR(T_1-T_0)\\)","\\(\\frac{3}{2}nR(T_1-T_0)\\)","\\(\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)","\\(\\frac{3}{2}nR(T_1-T_0)+\\frac{1}{2}k(x_1^2-x_0^2)\\)"],
+    ans:4
+  },
+  {
+    id:48,
+    ch:"Thermal Physics",
+    text:"After G reaches temperature \\(T_1\\), the heating is turned off. Partition B slowly moves a distance \\(d\\) to the right and G's temperature reduces to \\(T_2\\) as you slowly reduce your force on the rod to zero. What is the work done by G on your hand as B moves the distance \\(d\\)? Let I. \\(nR(T_1-T_2)\\), II. \\(\\frac{3}{2}nR(T_1-T_2)\\), III. \\(\\frac{1}{2}k(x_1^2-x_0^2)\\), and IV. \\(P_0 Sd\\)",
+    opts:["I + III − IV","I + III + IV","II − IV","II + III − IV","IV"],
+    ans:1
+  },
+  {
+    id:49,
+    ch:"Thermal Physics",
+    text:"You let go of the rod and heat is removed from G slowly until G returns to its initial state of pressure \\(P_0\\) and volume \\(V_0\\). How much heat is removed? Let I. \\(nR(T_2-T_0)\\), II. \\(\\frac{3}{2}nR(T_2-T_0)\\), III. \\(P_0 Sd\\)",
+    opts:["I − III","I + III","II − III","II + III","IV"],
+    ans:3
+  },
+  {
+    id:50,
+    ch:"Thermal Physics",
+    text:"As described between questions 45 to 49, the complete cycle of processes that the ideal gas G undergoes, starting from and returning to the pressure \\(P_0\\) and volume \\(V_0\\), is described by which of the following graphs?",
+    opts:["Graph a)","Graph b)","Graph c)","Graph d)","Graph e)"],
+    ans:4
+  },
 ];
 
 const state={};
